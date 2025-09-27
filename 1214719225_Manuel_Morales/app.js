@@ -24,3 +24,4 @@ const registrarGasto = (montoGasto) => {
         console.log("Fondos insuficientes.");
     }
 }
+mostrarBalance();
