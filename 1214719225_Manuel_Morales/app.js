@@ -9,10 +9,9 @@ let gastosTotales = 0;
 // No recibirá parámetros.
 // Su tarea será mostrar en la consola el estado financiero actual. Ej: "Hola, [Nombre], tu saldo es de: $1000. Has gastado: $0.".
 function mostrarBalance() {
-    let nombreUsuario = obtenerNombreUsuario();
     console.log(`Hola, ${nombreUsuario}, tu saldo es de: $${saldo}. Has gastado: $${gastosTotales}.`);
 }
-mostrarBalance();
+
 
 // Crea una función de expresión (const registrarIngreso = function() {...}).
 // Debe aceptar un parámetro: montoIngreso.
@@ -36,7 +35,7 @@ const registrarGasto = (montoGasto) => {
         console.log("Fondos insuficientes.");
     }
 }
-mostrarBalance();
+
 
 // Crea una función flecha simularSemana().
 // Dentro, usa un ciclo for que se repita 7 veces. En cada iteración, llama a registrarGasto con un monto fijo (ej. 50).
@@ -46,7 +45,7 @@ const simularSemana = () => {
         registrarGasto(50);
     }
 }
-simularSemana();
+
 
 // Condicional if/else if/else: Basado en el saldo, muestra mensajes como "Tu salud financiera es excelente", "puedes mejorar" o "Alerta: fondos bajos".
 // switch: Basado en rangos de gastosTotales, muestra mensajes como "Has gastado mucho", "Tus gastos son moderados" o "Has sido muy cuidadoso".
@@ -68,9 +67,45 @@ function diagnosticoFinanciero() {
         case (gastosTotales > 50000):
             console.log("Tus gastos son moderados.");
             break;
-        default:
-            console.log("Has sido muy cuidadoso con tus gastos.");
     }
 }
-simularSemana();
-diagnosticoFinanciero();
+
+
+// Fase 4: El Menú Interactivo (Ciclo while)
+// Finalmente, integraremos todo en un menú principal que le dé el control al usuario.
+
+// Crea la función principal de la aplicación:
+
+// Desarrolla una función declarativa iniciarApp(). Toda la lógica del menú irá dentro de esta función.
+// Dentro, crea un ciclo while (true) para que el menú se muestre de forma continua.
+function iniciarApp() {
+    while (true) {
+        let opcion = prompt("Selecciona una opción:\n1. Registrar ingreso \n2. Registrar gasto \n3. Simular una Semana de Gastos \n4. Ver Diagnóstico Financiero \n5. Mostrar Balance Actual \n6. Salir");
+        switch (opcion) {
+            case "1":
+                mostrarBalance();
+                break;
+            case "2":
+                let ingreso = parseFloat(prompt("Ingresa el monto del ingreso:"));
+                registrarIngreso(ingreso);
+                break;
+            case "3":
+                let gasto = parseFloat(prompt("Ingresa el monto del gasto:"));
+                registrarGasto(gasto);
+                break;
+            case "4":
+                simularSemana();
+                break;
+            case "5":
+                diagnosticoFinanciero();
+                break;
+            case "6":
+                alert("Gracias por usar la app. ¡Hasta luego!");
+                return; 
+            default:
+                alert("Opción no válida. Por favor, selecciona una opción válida.");
+        }
+    }
+}
+
+iniciarApp();
